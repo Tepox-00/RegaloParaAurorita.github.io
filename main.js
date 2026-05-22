@@ -1677,8 +1677,22 @@ const mcIngredients = ["Pan", "Tomate", "Carne", "Mayonesa", "Catsup", "Mostaza"
 
 
 // NOTA DE TEPOX: Aquí inicio el mini juego de hamburguesas.
+
+function requestLandscapeForMcdonals() {
+  const root = document.documentElement;
+
+  if (root.requestFullscreen) {
+    root.requestFullscreen().catch(() => {});
+  }
+
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock("landscape").catch(() => {});
+  }
+}
+
 function startMcdonalsGame() {
   activeFinalGame = "mcdonals";
+  requestLandscapeForMcdonals();
   finalGameTitle.textContent = "Combo de cumpleaños";
   finalGameStatus.textContent = "Prepara 20 pedidos antes de que se acabe el tiempo.";
   mcdonalsGamePanel.hidden = false;
