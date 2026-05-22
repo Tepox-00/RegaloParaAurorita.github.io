@@ -4434,3 +4434,12 @@ body.style-mcdonals .blow-candles-button {
     opacity: 0.86;
   }
 }
+/* NOTA DE TEPOX: Aquí hago que el juego de Cinnamon agarre bien el dedo en móvil. */
+.cinnamon-canvas {
+  touch-action: none;
+  cursor: grab;
+}
+
+.cinnamon-canvas:active {
+  cursor: grabbing;
+}
