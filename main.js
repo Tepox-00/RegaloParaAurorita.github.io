@@ -178,7 +178,7 @@ let slideIsRunning = false;
 
 const backgroundMusic = new Audio();
 backgroundMusic.loop = true;
-backgroundMusic.volume = 0.1;
+backgroundMusic.volume = 0.05;
 
 let backgroundMusicUnlocked = false;
 let activeBackgroundMusicPath = "";
