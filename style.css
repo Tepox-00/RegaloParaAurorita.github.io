@@ -4434,6 +4434,8 @@ body.style-mcdonals .blow-candles-button {
     opacity: 0.86;
   }
 }
+
+
 /* NOTA DE TEPOX: Aquí hago que el juego de Cinnamon agarre bien el dedo en móvil. */
 .cinnamon-canvas {
   touch-action: none;
@@ -4442,4 +4444,305 @@ body.style-mcdonals .blow-candles-button {
 
 .cinnamon-canvas:active {
   cursor: grabbing;
+}
+
+
+/* NOTA DE TEPOX: Aquí acomodo McDonals para que quepa mejor en celular horizontal. */
+.final-game-section.is-mcdonals-game {
+  padding: 0.35rem;
+}
+
+.final-game-section.is-mcdonals-game .final-game-shell {
+  width: min(99vw, 1280px);
+  height: min(98dvh, 760px);
+  gap: 0.35rem;
+}
+
+.final-game-section.is-mcdonals-game .final-game-hud {
+  gap: 0.5rem;
+}
+
+.final-game-section.is-mcdonals-game .final-game-title {
+  font-size: clamp(1.3rem, 3.2vw, 2.8rem);
+}
+
+.final-game-section.is-mcdonals-game .final-game-status {
+  max-width: min(62vw, 680px);
+  padding: 0.38rem 0.65rem;
+  font-size: clamp(0.68rem, 1.35vw, 0.88rem);
+}
+
+.final-game-section.is-mcdonals-game .game-panel {
+  border-width: 4px;
+  border-radius: 22px;
+}
+
+.final-game-section.is-mcdonals-game .mcdonals-counter {
+  width: min(98%, 1120px);
+  height: min(96%, 610px);
+  display: grid;
+  grid-template-columns: minmax(210px, 0.78fr) minmax(250px, 1.1fr) minmax(230px, 0.9fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "order burger ingredients"
+    "order burger actions";
+  gap: clamp(0.45rem, 1vw, 0.85rem);
+  padding: 0.55rem;
+  overflow: hidden;
+}
+
+.final-game-section.is-mcdonals-game .order-card {
+  grid-area: order;
+  min-height: 0;
+  padding: clamp(0.55rem, 1.2vw, 0.9rem);
+  border-width: 4px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.final-game-section.is-mcdonals-game .order-card h3 {
+  margin: 0.25rem 0;
+  font-size: clamp(1.15rem, 2.5vw, 2rem);
+}
+
+.final-game-section.is-mcdonals-game .order-kicker,
+.final-game-section.is-mcdonals-game .mc-lives,
+.final-game-section.is-mcdonals-game .mc-timer {
+  font-size: clamp(0.68rem, 1.35vw, 0.92rem);
+}
+
+.final-game-section.is-mcdonals-game .mc-timer {
+  margin-top: 0.45rem;
+  padding: 0.28rem 0.45rem;
+  border-width: 2px;
+}
+
+.final-game-section.is-mcdonals-game #mcOrderText {
+  margin: 0.55rem 0;
+  gap: 0.28rem;
+  max-height: 44vh;
+  overflow: hidden;
+}
+
+.final-game-section.is-mcdonals-game .order-chip {
+  padding: 0.24rem 0.38rem;
+  border-width: 2px;
+  box-shadow: 1px 2px 0 var(--outline);
+  font-size: clamp(0.62rem, 1.25vw, 0.82rem);
+}
+
+.final-game-section.is-mcdonals-game .burger-builder {
+  grid-area: burger;
+  min-height: 0;
+  height: 100%;
+  border-width: 4px;
+  border-radius: 20px;
+}
+
+.final-game-section.is-mcdonals-game .burger-plate {
+  bottom: 18px;
+  height: 24px;
+  border-width: 4px;
+}
+
+.final-game-section.is-mcdonals-game .burger-layer {
+  width: min(66%, 320px);
+  height: 20px;
+  border-width: 3px;
+}
+
+.final-game-section.is-mcdonals-game .burger-preview-text {
+  bottom: 2px;
+  font-size: clamp(0.58rem, 1.15vw, 0.78rem);
+}
+
+.final-game-section.is-mcdonals-game .ingredient-buttons {
+  grid-area: ingredients;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 0.45rem;
+}
+
+.final-game-section.is-mcdonals-game .ingredient-buttons button,
+.final-game-section.is-mcdonals-game .mc-action {
+  min-width: 0;
+  padding: 0.55rem 0.42rem;
+  border-width: 3px;
+  border-radius: 13px;
+  box-shadow: 3px 4px 0 var(--outline);
+  font-size: clamp(0.68rem, 1.5vw, 0.95rem);
+  line-height: 1;
+}
+
+.final-game-section.is-mcdonals-game .mcdonals-actions {
+  grid-area: actions;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* NOTA DE TEPOX: En celular horizontal fuerzo todo a una sola pantalla. */
+@media (max-width: 950px) and (orientation: landscape) {
+  .final-game-section.is-mcdonals-game {
+    padding: 0.18rem;
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-shell {
+    width: 100vw;
+    height: 100dvh;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-hud {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    padding: 0 0.25rem;
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-title {
+    font-size: clamp(1rem, 3.4vw, 1.6rem);
+    white-space: nowrap;
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-status {
+    max-width: none;
+    padding: 0.28rem 0.45rem;
+    font-size: clamp(0.58rem, 1.8vw, 0.72rem);
+    border-width: 2px;
+    box-shadow: 2px 3px 0 var(--outline);
+  }
+
+  .final-game-section.is-mcdonals-game .game-panel {
+    border-width: 3px;
+    border-radius: 16px;
+    box-shadow: 4px 5px 0 var(--outline);
+  }
+
+  .final-game-section.is-mcdonals-game .mcdonals-counter {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 0.76fr 1.05fr 0.9fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 0.35rem;
+    padding: 0.35rem;
+  }
+
+  .final-game-section.is-mcdonals-game .order-card {
+    padding: 0.42rem;
+    border-width: 3px;
+    border-radius: 14px;
+    box-shadow: 3px 4px 0 var(--outline);
+  }
+
+  .final-game-section.is-mcdonals-game .order-card h3 {
+    font-size: clamp(0.95rem, 3vw, 1.35rem);
+  }
+
+  .final-game-section.is-mcdonals-game .order-kicker,
+  .final-game-section.is-mcdonals-game .mc-lives,
+  .final-game-section.is-mcdonals-game .mc-timer {
+    font-size: clamp(0.55rem, 1.8vw, 0.72rem);
+  }
+
+  .final-game-section.is-mcdonals-game #mcOrderText {
+    gap: 0.2rem;
+    margin: 0.35rem 0;
+    max-height: 54vh;
+  }
+
+  .final-game-section.is-mcdonals-game .order-chip {
+    padding: 0.18rem 0.28rem;
+    font-size: clamp(0.52rem, 1.7vw, 0.66rem);
+  }
+
+  .final-game-section.is-mcdonals-game .burger-builder {
+    min-height: 0;
+    border-width: 3px;
+    border-radius: 16px;
+    box-shadow: 3px 4px 0 var(--outline);
+  }
+
+  .final-game-section.is-mcdonals-game .burger-plate {
+    bottom: 12px;
+    height: 18px;
+    border-width: 3px;
+  }
+
+  .final-game-section.is-mcdonals-game .burger-layer {
+    width: min(68%, 260px);
+    height: 16px;
+    border-width: 2px;
+  }
+
+  .final-game-section.is-mcdonals-game .ingredient-buttons {
+    gap: 0.32rem;
+  }
+
+  .final-game-section.is-mcdonals-game .ingredient-buttons button,
+  .final-game-section.is-mcdonals-game .mc-action {
+    padding: 0.42rem 0.28rem;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 0 var(--outline);
+    font-size: clamp(0.56rem, 1.9vw, 0.74rem);
+  }
+
+  .final-game-section.is-mcdonals-game .mcdonals-actions {
+    gap: 0.32rem;
+  }
+}
+
+/* NOTA DE TEPOX: Si el navegador no logra girar, todavía compacto la vista vertical. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .final-game-section.is-mcdonals-game .final-game-shell {
+    height: 100dvh;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-title {
+    font-size: 1.15rem;
+  }
+
+  .final-game-section.is-mcdonals-game .final-game-status {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .final-game-section.is-mcdonals-game .mcdonals-counter {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto minmax(150px, 1fr) auto;
+    grid-template-areas:
+      "order order"
+      "burger ingredients"
+      "actions actions";
+    gap: 0.35rem;
+    overflow: hidden;
+  }
+
+  .final-game-section.is-mcdonals-game .order-card {
+    padding: 0.38rem;
+  }
+
+  .final-game-section.is-mcdonals-game #mcOrderText {
+    max-height: 84px;
+    overflow: hidden;
+  }
+
+  .final-game-section.is-mcdonals-game .burger-builder {
+    min-height: 150px;
+  }
+
+  .final-game-section.is-mcdonals-game .ingredient-buttons {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .final-game-section.is-mcdonals-game .ingredient-buttons button,
+  .final-game-section.is-mcdonals-game .mc-action {
+    padding: 0.35rem 0.2rem;
+    font-size: 0.62rem;
+  }
 }
