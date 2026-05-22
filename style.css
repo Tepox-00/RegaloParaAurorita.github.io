@@ -3763,7 +3763,7 @@ body.style-mcdonals .blow-candles-button {
 
 
 .cake-section {
-  --candles-y-desktop: 24px;
+  --candles-y-desktop: -10px;
   --candles-y-tablet: 24px;
   --candles-y-mobile: 24px;
   --candles-y-active: var(--candles-y-desktop);
@@ -4405,5 +4405,32 @@ body.style-mcdonals .blow-candles-button {
 
   to {
     transform: scale(1.04);
+  }
+}
+
+
+/* NOTA DE TEPOX: Aquí hago más chico el texto de ayuda del circo para que no tape los controles. */
+.game-help--circus {
+  width: min(54vw, 460px);
+  max-width: 460px;
+  padding: 0.38rem 0.65rem;
+  font-size: clamp(0.62rem, 1.15vw, 0.78rem);
+  line-height: 1.12;
+  white-space: normal;
+  bottom: 0.65rem;
+}
+
+/* NOTA DE TEPOX: En pantallas chicas lo subo y lo hago todavía más compacto. */
+@media (max-width: 780px) {
+  .game-help--circus {
+    display: block;
+    left: 50%;
+    bottom: auto;
+    top: 0.55rem;
+    width: min(52vw, 300px);
+    max-width: 300px;
+    padding: 0.32rem 0.5rem;
+    font-size: clamp(0.55rem, 2.2vw, 0.68rem);
+    opacity: 0.86;
   }
 }
