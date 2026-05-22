@@ -4552,7 +4552,7 @@ body.style-mcdonals .blow-candles-button {
 }
 
 .final-game-section.is-mcdonals-game .burger-preview-text {
-  bottom: 10px;
+  bottom: -8px;
   font-size: clamp(0.58rem, 1.15vw, 0.78rem);
 }
 
