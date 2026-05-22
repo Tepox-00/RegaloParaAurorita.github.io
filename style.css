@@ -4746,3 +4746,37 @@ body.style-mcdonals .blow-candles-button {
     font-size: 0.62rem;
   }
 }
+
+/* NOTA DE TEPOX: Aquí separo el plato del texto para que no lo tape. */
+.final-game-section.is-mcdonals-game .burger-plate {
+  bottom: 34px;
+}
+
+.final-game-section.is-mcdonals-game .burger-preview-text {
+  bottom: 8px;
+  z-index: 5;
+}
+
+/* NOTA DE TEPOX: En celular horizontal dejo el plato más arriba y el texto abajo. */
+@media (max-width: 950px) and (orientation: landscape) {
+  .final-game-section.is-mcdonals-game .burger-plate {
+    bottom: 28px;
+  }
+
+  .final-game-section.is-mcdonals-game .burger-preview-text {
+    bottom: 5px;
+    z-index: 5;
+  }
+}
+
+/* NOTA DE TEPOX: En celular vertical también evito que el plato tape el texto. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .final-game-section.is-mcdonals-game .burger-plate {
+    bottom: 26px;
+  }
+
+  .final-game-section.is-mcdonals-game .burger-preview-text {
+    bottom: 5px;
+    z-index: 5;
+  }
+}
