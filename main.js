@@ -72,6 +72,7 @@ const styles = [
     companionFolder: "Assets/Image/Compañeros/Circo",
     companionCount: 7,
     musicPath: "Assets/Audio/CircoDigital_Music.mp3",
+    musicVolume: 0.05,
   },
   {
     className: "style-cinnamon",
@@ -92,6 +93,7 @@ const styles = [
     companionFolder: "Assets/Image/Compañeros/Cinnamon",
     companionCount: 5,
     musicPath: "Assets/Audio/Cinnamon_Music.mp3",
+    musicVolume: 0.01,
   },
   {
     className: "style-mcdonals",
@@ -112,6 +114,7 @@ const styles = [
     companionFolder: "Assets/Image/Compañeros/McDonald",
     companionCount: 5,
     musicPath: "Assets/Audio/Mcdonald_Music.mp3",
+    musicVolume: 0.05,
   },
 ];
 
@@ -178,7 +181,7 @@ let slideIsRunning = false;
 
 const backgroundMusic = new Audio();
 backgroundMusic.loop = true;
-backgroundMusic.volume = 0.001;
+backgroundMusic.volume = getBackgroundMusicVolume();
 
 let backgroundMusicUnlocked = false;
 let activeBackgroundMusicPath = "";
@@ -201,15 +204,31 @@ let mcdonalsState = null;
 let mcdonalsTimerFrame = null;
 
 
+function getBackgroundMusicVolume(styleInfo = getCurrentStyle()) {
+  return typeof styleInfo.musicVolume === "number" ? styleInfo.musicVolume : 0.05;
+}
+
 function setBackgroundMusic(styleInfo) {
-  if (!styleInfo.musicPath || activeBackgroundMusicPath === styleInfo.musicPath) return;
+  if (!styleInfo.musicPath) return;
+
+  const volume = getBackgroundMusicVolume(styleInfo);
+  const isSameSong = activeBackgroundMusicPath === styleInfo.musicPath;
+
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = volume;
+
+  if (isSameSong) {
+    if (backgroundMusicUnlocked && backgroundMusic.paused) {
+      backgroundMusic.play().catch(() => {});
+    }
+
+    return;
+  }
 
   activeBackgroundMusicPath = styleInfo.musicPath;
   backgroundMusic.pause();
   backgroundMusic.src = styleInfo.musicPath;
   backgroundMusic.currentTime = 0;
-  backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.1;
 
   if (backgroundMusicUnlocked) {
     backgroundMusic.play().catch(() => {});
@@ -220,6 +239,7 @@ function unlockBackgroundMusic() {
   if (backgroundMusicUnlocked) return;
 
   backgroundMusicUnlocked = true;
+  setBackgroundMusic(getCurrentStyle());
 
   if (activeBackgroundMusicPath) {
     backgroundMusic.play().catch(() => {});
@@ -232,7 +252,7 @@ function pauseBackgroundMusic() {
 
 function resumeBackgroundMusic() {
   if (!backgroundMusicUnlocked || !activeBackgroundMusicPath) return;
-  backgroundMusic.volume = 0.1;
+  backgroundMusic.volume = getBackgroundMusicVolume();
   backgroundMusic.play().catch(() => {});
 }
 
@@ -405,6 +425,7 @@ mcServeButton.addEventListener("click", serveMcOrder);
 mcClearButton.addEventListener("click", clearMcBurger);
 
 applyStyle(currentStyleIndex);
+setBackgroundMusic(getCurrentStyle());
 }
 
 function getViewportBox() {
@@ -588,14 +609,14 @@ function stopCurrentAudio() {
   }
 
   currentAudio = null;
-  backgroundMusic.volume = 0.1;
+  backgroundMusic.volume = getBackgroundMusicVolume();
 }
 
 function playSingleAudio(src) {
   return new Promise((resolve, reject) => {
     const audio = new Audio(src);
     currentAudio = audio;
-    backgroundMusic.volume = 0.06;
+    backgroundMusic.volume = getBackgroundMusicVolume() * 0.5;
 
     let finished = false;
 
@@ -615,7 +636,7 @@ function playSingleAudio(src) {
         currentAudio = null;
       }
 
-      backgroundMusic.volume = 0.1;
+      backgroundMusic.volume = getBackgroundMusicVolume();
       resolve(true);
     };
 
@@ -628,7 +649,7 @@ function playSingleAudio(src) {
         currentAudio = null;
       }
 
-      backgroundMusic.volume = 0.1;
+      backgroundMusic.volume = getBackgroundMusicVolume();
       reject(new Error("No se pudo reproducir el audio."));
     };
 
@@ -1966,6 +1987,8 @@ waitCharacters.forEach((character) => {
 
 document.addEventListener("pointerdown", unlockBackgroundMusic, { once: true });
 document.addEventListener("keydown", unlockBackgroundMusic, { once: true });
+styleSwitch.addEventListener("click", unlockBackgroundMusic);
+letterButton.addEventListener("click", unlockBackgroundMusic);
 
 letterButton.addEventListener('click', playTapAnimation);
 letterButton.addEventListener('animationend', (event) => {
