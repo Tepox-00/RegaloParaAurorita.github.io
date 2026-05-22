@@ -75,7 +75,7 @@ const styles = [
   {
     className: "style-cinnamon",
     label: "Cinamonn",
-    birthday: "FELICIDADDEEES POR SE TU CUMPLEAÑOS, ven a pasarla bien y ver lo que te prepare.",
+    birthday: "FELICIDADDEEES POR SER TU CUMPLEAÑOS, ven a pasarla bien y ver lo que te prepare.",
     cakeTitle: "Pastel suavecito de nubes",
     cakeMessage: "Pide un deseo tranquilo, dulce y lleno de cariño.",
     cakeImageCandidates: [
