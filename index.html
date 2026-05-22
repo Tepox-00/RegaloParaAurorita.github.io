@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carta de Cumpleaños</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="style-digital-circus">
+    <!-- NOTA DE TEPOX: Aquí dejo la pantalla inicial de la carta. -->
+  <main class="scene">
+    <button class="style-switch" id="styleSwitch" type="button" aria-label="Cambiar estilo visual">
+      <span class="style-switch__main">Style Switch</span>
+      <span class="style-switch__current" id="styleCurrent">Circo Digital</span>
+    </button>
+    <div class="theme-label" id="themeLabel" aria-hidden="true">Circo Digital</div>
+    <div class="background-shapes" aria-hidden="true">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+      <span class="shape shape-4"></span>
+      <span class="shape shape-5"></span>
+      <span class="shape shape-6"></span>
+    </div>
+    <div class="theme-decor theme-decor--circus" aria-hidden="true">
+      <span class="marquee marquee-left">★ HAPPY ★</span>
+      <span class="marquee marquee-right">BIRTHDAY</span>
+
+      <span class="balloon balloon-red"></span>
+      <span class="balloon balloon-blue"></span>
+      <span class="balloon balloon-yellow"></span>
+
+      <span class="ticket ticket-one">
+        <span class="ticket-year ticket-year-left">2026</span>
+        <span class="ticket-center">
+          <span class="ticket-stars">★★★</span>
+          <span class="ticket-text">TICKET</span>
+          <span class="ticket-stars">★★★</span>
+        </span>
+        <span class="ticket-year ticket-year-right">2026</span>
+      </span>
+
+      <span class="ticket ticket-two">
+        <span class="ticket-year ticket-year-left">2026</span>
+        <span class="ticket-center">
+          <span class="ticket-stars">★★★</span>
+          <span class="ticket-text">TICKET</span>
+          <span class="ticket-stars">★★★</span>
+        </span>
+        <span class="ticket-year ticket-year-right">2026</span>
+      </span>
+
+      <span class="jester-hat jester-left">
+        <i></i><i></i><i></i>
+      </span>
+
+      <span class="circuit circuit-one">
+        <i></i><i></i><i></i>
+      </span>
+      <span class="circuit circuit-two">
+        <i></i><i></i><i></i>
+      </span>
+    </div>
+    <div class="theme-decor theme-decor--cinnamon" aria-hidden="true">
+      <span class="rainbow"></span>
+
+      <span class="cloud cloud-one"></span>
+      <span class="cloud cloud-two"></span>
+      <span class="cloud cloud-three"></span>
+
+      <span class="cute-star star-one">✦</span>
+      <span class="cute-star star-two">✧</span>
+      <span class="cute-star star-three">✦</span>
+
+      <span class="heart heart-one">♥</span>
+      <span class="heart heart-two">♡</span>
+
+      <span class="cupcake cupcake-one">
+        <i></i>
+      </span>
+
+      <span class="soft-balloon soft-balloon-one"></span>
+      <span class="soft-balloon soft-balloon-two"></span>
+    </div>
+    <div class="theme-decor theme-decor--mcdonals" aria-hidden="true">
+      <span class="fast-m fast-m-one">M</span>
+      <span class="fast-m fast-m-two">M</span>
+      <span class="fast-m fast-m-three">M</span>
+
+      <span class="burger burger-one">
+        <i class="bun bun-top"></i>
+        <i class="cheese"></i>
+        <i class="patty"></i>
+        <i class="bun bun-bottom"></i>
+      </span>
+
+      <span class="fries fries-one">
+        <i></i><i></i><i></i><i></i>
+      </span>
+
+      <span class="grill grill-one">
+        <i></i><i></i><i></i><i></i>
+      </span>
+
+      <span class="fast-ticket fast-ticket-one">COMBO</span>
+      <span class="fast-spark fast-spark-one">✦</span>
+      <span class="fast-spark fast-spark-two">✦</span>
+    </div>
+
+    <section class="card-stage" aria-label="Carta de cumpleaños">
+      <p class="birthday-message" id="birthdayMessage">FELIZ CUMPLEAÑOOOS, espero que la pases bien en nuestro ASOMBROSO CIRCO DIGITAAL</p>
+
+      <h1 class="question">¿Lista para ver?</h1>
+      <div class="character-layer" aria-hidden="true">
+        <img
+          class="wait-character wait-character--jax"
+          src="Assets/Image/Jax_Wait.png"
+          alt=""
+        />
+        <img
+          class="wait-character wait-character--cinnamon"
+          src="Assets/Image/Cinamonroll_Wait.webp"
+          alt=""
+        />
+        <img
+          class="wait-character wait-character--mcdonals"
+          src="Assets/Image/McDonals_Wait.png"
+          alt=""
+        />
+      </div>
+      <button class="letter-button" id="letterButton" type="button" aria-label="Abrir carta">
+        <span class="tap-hint">Toca la carta</span>
+
+        <span class="letter" aria-hidden="true">
+          <span class="letter-back"></span>
+          <span class="letter-flap"></span>
+          <span class="letter-front"></span>
+          <span class="letter-seal">
+            <span class="seal-shine"></span>
+          </span>
+        </span>
+      </button>
+      <div class="action-buttons" id="actionButtons">
+        <button class="choice-button choice-button--yes" id="yesButton" type="button">
+          Sipirili
+        </button>
+
+        <button class="choice-button choice-button--no" id="noButton" type="button">
+          Noporolo
+        </button>
+      </div>
+    </section>
+    <div class="bottom-toast" id="bottomToast" role="status" aria-live="polite"></div>
+  </main>
+      <!-- NOTA DE TEPOX: Aquí muestro los diálogos antes del pastel. -->
+    <section class="slideshow-section" id="slideshowSection" aria-label="Diapositivas de felicitación" hidden>
+      <div class="slide-background" aria-hidden="true">
+        <span class="slide-orbit slide-orbit-one"></span>
+        <span class="slide-orbit slide-orbit-two"></span>
+        <span class="slide-dot slide-dot-one"></span>
+        <span class="slide-dot slide-dot-two"></span>
+        <span class="slide-dot slide-dot-three"></span>
+      </div>
+
+      <article class="dialogue-card" id="dialogueCard">
+        <div class="dialogue-layout">
+          <div class="dialogue-character-wrap" aria-hidden="true">
+            <img class="dialogue-character" id="dialogueCharacter" alt="" />
+          </div>
+
+          <div class="dialogue-content">
+            <p class="dialogue-text" id="dialogueText"></p>
+
+            <div class="dialogue-progress" aria-hidden="true">
+              <span class="dialogue-progress__bar" id="dialogueProgressBar"></span>
+            </div>
+
+            <div class="dialogue-controls">
+              <p class="slide-helper" id="slideHelper">El mensaje avanza solito...</p>
+              <button class="slide-next-button" id="slideNextButton" type="button" hidden>Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+      <!-- NOTA DE TEPOX: Aquí pongo el pastel, las velas y el botón para soplar. -->
+    <section class="cake-section" id="cakeSection" aria-label="Pantalla pastel" hidden>
+      <div class="cake-stage">
+        <div class="cake-companions" id="cakeCompanions" aria-hidden="true"></div>
+
+        <p class="cake-kicker" id="cakeKicker">Pantalla Pastel</p>
+        <h2 class="cake-title" id="cakeTitle">¡Hora del pastel!</h2>
+
+        <div class="cake-table" aria-hidden="true">
+          <img class="cake-image" id="cakeImage" src="" alt="Pastel de cumpleaños" />
+
+          <div class="candles">
+            <span class="candle candle-one"><i></i></span>
+            <span class="candle candle-two"><i></i></span>
+            <span class="candle candle-three"><i></i></span>
+            <span class="candle candle-four"><i></i></span>
+            <span class="candle candle-five"><i></i></span>
+          </div>
+        </div>
+
+        <p class="cake-message" id="cakeMessage">Pide un deseo antes de que se apaguen las velitas.</p>
+        <div class="blow-game-panel">
+          <button class="blow-candles-button" id="blowCandlesButton" type="button">
+            Soplar las Velas
+          </button>
+          <p class="blow-game-hint" id="blowGameHint">
+            Presiona el botón y sopla al micrófono o toca rápido la pantalla.
+          </p>
+          <button class="play-mini-game-button" id="playMiniGameButton" type="button" hidden>
+            Jugar MiniJuego
+          </button>
+        </div>
+      </div>
+    </section>
+      <!-- NOTA DE TEPOX: Aquí pongo los mini juegos finales. -->
+    <section class="final-game-section" id="finalGameSection" aria-label="Mini juego final" hidden>
+      <div class="final-game-shell">
+        <div class="final-game-hud">
+          <h2 class="final-game-title" id="finalGameTitle">Mini juego</h2>
+          <p class="final-game-status" id="finalGameStatus">Preparando juego...</p>
+        </div>
+
+        <div class="game-panel game-panel--circus" id="circusGamePanel" hidden>
+          <canvas class="circus-canvas" id="circusCanvas" width="1280" height="720"></canvas>
+
+          <div class="circus-crosshair" aria-hidden="true"></div>
+
+          <div class="circus-touch-controls" aria-hidden="true">
+            <div class="touch-stick" id="circusStick">
+              <span class="touch-stick-knob" id="circusStickKnob"></span>
+            </div>
+
+            <div class="touch-look" id="circusLookArea">
+              <span>Mira</span>
+            </div>
+
+            <button class="game-action-button" id="circusActionButton" type="button">
+              Dar pastel
+            </button>
+          </div>
+
+          <p class="game-help game-help--circus">
+            PC: WASD para moverte, mouse para mirar, E para interactuar.
+            En móvil usa el joystick, zona de mirada y botón.
+          </p>
+        </div>
+
+        <div class="game-panel game-panel--cinnamon" id="cinnamonGamePanel" hidden>
+          <canvas class="cinnamon-canvas" id="cinnamonCanvas" width="960" height="720"></canvas>
+          <p class="game-help">Esquiva las nubecitas y avanza hasta llegar al final.</p>
+        </div>
+
+        <div class="game-panel game-panel--mcdonals" id="mcdonalsGamePanel" hidden>
+          <div class="mcdonals-counter">
+            <div class="order-card">
+              <p class="order-kicker">Cliente <span id="mcCustomerNumber">1</span>/20</p>
+              <h3>Pedido</h3>
+              <p id="mcOrderText">Pan + Carne</p>
+              <p class="mc-lives">Fallos: <span id="mcFails">0</span>/5</p>
+              <p class="mc-timer">Tiempo: <span id="mcTimer">15.0</span>s</p>
+            </div>
+
+            <div class="burger-builder" id="burgerBuilder">
+              <div class="burger-plate"></div>
+            </div>
+
+            <div class="ingredient-buttons" id="ingredientButtons">
+              <button data-ingredient="Pan" type="button">Pan</button>
+              <button data-ingredient="Tomate" type="button">Tomate</button>
+              <button data-ingredient="Carne" type="button">Carne</button>
+              <button data-ingredient="Mayonesa" type="button">Mayonesa</button>
+              <button data-ingredient="Catsup" type="button">Catsup</button>
+              <button data-ingredient="Mostaza" type="button">Mostaza</button>
+            </div>
+
+            <div class="mcdonals-actions">
+              <button class="mc-action" id="mcServeButton" type="button">Entregar orden</button>
+              <button class="mc-action mc-action--secondary" id="mcClearButton" type="button">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <script src="main.js"></script>
+</body>
+</html>
