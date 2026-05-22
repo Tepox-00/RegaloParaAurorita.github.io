@@ -93,7 +93,7 @@ const styles = [
     companionFolder: "Assets/Image/Compañeros/Cinnamon",
     companionCount: 5,
     musicPath: "Assets/Audio/Cinnamon_Music.mp3",
-    musicVolume: 0.01,
+    musicVolume: 0.02,
   },
   {
     className: "style-mcdonals",
@@ -114,7 +114,7 @@ const styles = [
     companionFolder: "Assets/Image/Compañeros/McDonald",
     companionCount: 5,
     musicPath: "Assets/Audio/Mcdonald_Music.mp3",
-    musicVolume: 0.05,
+    musicVolume: 0.1,
   },
 ];
 
