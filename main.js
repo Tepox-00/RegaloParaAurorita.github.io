@@ -71,11 +71,12 @@ const styles = [
     introImageFlipped: true,
     companionFolder: "Assets/Image/Compañeros/Circo",
     companionCount: 7,
+    musicPath: "Assets/Audio/CircoDigital_Music.mp3",
   },
   {
     className: "style-cinnamon",
     label: "Cinamonn",
-    birthday: "FELICIDADDEEES POR SER TU CUMPLEAÑOS, ven a pasarla bien y ver lo que te prepare.",
+    birthday: "FELICIDADDEEES POR SE TU CUMPLEAÑOS, ven a pasarla bien y ver lo que te prepare.",
     cakeTitle: "Pastel suavecito de nubes",
     cakeMessage: "Pide un deseo tranquilo, dulce y lleno de cariño.",
     cakeImageCandidates: [
@@ -90,6 +91,7 @@ const styles = [
     introImageFlipped: false,
     companionFolder: "Assets/Image/Compañeros/Cinnamon",
     companionCount: 5,
+    musicPath: "Assets/Audio/Cinnamon_Music.mp3",
   },
   {
     className: "style-mcdonals",
@@ -109,6 +111,7 @@ const styles = [
     introImageFlipped: false,
     companionFolder: "Assets/Image/Compañeros/McDonald",
     companionCount: 5,
+    musicPath: "Assets/Audio/Mcdonald_Music.mp3",
   },
 ];
 
@@ -172,6 +175,13 @@ let toastTimer = null;
 let hideToastTimer = null;
 let currentAudio = null;
 let slideIsRunning = false;
+
+const backgroundMusic = new Audio();
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.1;
+
+let backgroundMusicUnlocked = false;
+let activeBackgroundMusicPath = "";
 let skipSlidesRequested = false;
 let currentTypingInterval = null;
 let blowGameActive = false;
@@ -189,6 +199,43 @@ let circusState = null;
 let cinnamonState = null;
 let mcdonalsState = null;
 let mcdonalsTimerFrame = null;
+
+
+function setBackgroundMusic(styleInfo) {
+  if (!styleInfo.musicPath || activeBackgroundMusicPath === styleInfo.musicPath) return;
+
+  activeBackgroundMusicPath = styleInfo.musicPath;
+  backgroundMusic.pause();
+  backgroundMusic.src = styleInfo.musicPath;
+  backgroundMusic.currentTime = 0;
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.1;
+
+  if (backgroundMusicUnlocked) {
+    backgroundMusic.play().catch(() => {});
+  }
+}
+
+function unlockBackgroundMusic() {
+  if (backgroundMusicUnlocked) return;
+
+  backgroundMusicUnlocked = true;
+
+  if (activeBackgroundMusicPath) {
+    backgroundMusic.play().catch(() => {});
+  }
+}
+
+function pauseBackgroundMusic() {
+  backgroundMusic.pause();
+}
+
+function resumeBackgroundMusic() {
+  if (!backgroundMusicUnlocked || !activeBackgroundMusicPath) return;
+  backgroundMusic.volume = 0.1;
+  backgroundMusic.play().catch(() => {});
+}
+
 
 function playTapAnimation() {
   letterButton.classList.remove("is-tapping");
@@ -214,6 +261,7 @@ function applyStyle(index) {
   cakeKicker.textContent = `Pantalla Pastel ${selectedStyle.label}`;
   setImageWithFallback(cakeImage, selectedStyle.cakeImageCandidates);
   renderCompanions(selectedStyle);
+  setBackgroundMusic(selectedStyle);
 }
 
 function switchToNextStyle() {
@@ -540,12 +588,14 @@ function stopCurrentAudio() {
   }
 
   currentAudio = null;
+  backgroundMusic.volume = 0.1;
 }
 
 function playSingleAudio(src) {
   return new Promise((resolve, reject) => {
     const audio = new Audio(src);
     currentAudio = audio;
+    backgroundMusic.volume = 0.06;
 
     let finished = false;
 
@@ -565,6 +615,7 @@ function playSingleAudio(src) {
         currentAudio = null;
       }
 
+      backgroundMusic.volume = 0.1;
       resolve(true);
     };
 
@@ -577,6 +628,7 @@ function playSingleAudio(src) {
         currentAudio = null;
       }
 
+      backgroundMusic.volume = 0.1;
       reject(new Error("No se pudo reproducir el audio."));
     };
 
@@ -698,6 +750,7 @@ async function startSlideshow() {
   setImageWithFallback(dialogueCharacter, selectedStyle.introImageCandidates, selectedStyle.introImageFlipped);
   setImageWithFallback(cakeImage, selectedStyle.cakeImageCandidates);
   renderCompanions(selectedStyle);
+  setBackgroundMusic(selectedStyle);
   resetBlowGame();
 
   await wait(280);
@@ -1909,6 +1962,10 @@ waitCharacters.forEach((character) => {
     character.classList.add('is-missing');
   });
 });
+
+
+document.addEventListener("pointerdown", unlockBackgroundMusic, { once: true });
+document.addEventListener("keydown", unlockBackgroundMusic, { once: true });
 
 letterButton.addEventListener('click', playTapAnimation);
 letterButton.addEventListener('animationend', (event) => {
