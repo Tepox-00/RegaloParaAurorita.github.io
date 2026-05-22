@@ -307,13 +307,45 @@ circusLookArea.addEventListener("pointerup", () => {
 function updateCinnamonPointerTarget(event) {
   if (activeFinalGame !== "cinnamon") return;
 
+  event.preventDefault();
+
   const rect = cinnamonCanvas.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width;
-  cinnamonState.targetX = clamp((x - 0.5) * 2, -1, 1);
+  const normalizedX = clamp((event.clientX - rect.left) / rect.width, 0.12, 0.88);
+
+  // NOTA DE TEPOX: En móvil quiero que el personaje siga mi dedo, no que se mueva raro por rangos viejos.
+  cinnamonState.targetX = normalizedX;
+  cinnamonState.playerX = normalizedX;
 }
 
-cinnamonCanvas.addEventListener("pointerdown", updateCinnamonPointerTarget);
-cinnamonCanvas.addEventListener("pointermove", updateCinnamonPointerTarget);
+cinnamonCanvas.addEventListener("pointerdown", (event) => {
+  if (activeFinalGame !== "cinnamon") return;
+
+  cinnamonCanvas.setPointerCapture(event.pointerId);
+  updateCinnamonPointerTarget(event);
+});
+
+cinnamonCanvas.addEventListener("pointermove", (event) => {
+  if (activeFinalGame !== "cinnamon") return;
+
+  const isTouch = event.pointerType === "touch";
+  const isMouseDragging = event.buttons === 1;
+
+  if (isTouch || isMouseDragging) {
+    updateCinnamonPointerTarget(event);
+  }
+});
+
+cinnamonCanvas.addEventListener("pointerup", (event) => {
+  if (cinnamonCanvas.hasPointerCapture(event.pointerId)) {
+    cinnamonCanvas.releasePointerCapture(event.pointerId);
+  }
+});
+
+cinnamonCanvas.addEventListener("pointercancel", (event) => {
+  if (cinnamonCanvas.hasPointerCapture(event.pointerId)) {
+    cinnamonCanvas.releasePointerCapture(event.pointerId);
+  }
+});
 
 ingredientButtons.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-ingredient]");
@@ -1971,13 +2003,45 @@ circusLookArea.addEventListener("pointerup", () => {
 function updateCinnamonPointerTarget(event) {
   if (activeFinalGame !== "cinnamon") return;
 
+  event.preventDefault();
+
   const rect = cinnamonCanvas.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width;
-  cinnamonState.targetX = clamp((x - 0.5) * 2, -1, 1);
+  const normalizedX = clamp((event.clientX - rect.left) / rect.width, 0.12, 0.88);
+
+  // NOTA DE TEPOX: En móvil quiero que el personaje siga mi dedo, no que se mueva raro por rangos viejos.
+  cinnamonState.targetX = normalizedX;
+  cinnamonState.playerX = normalizedX;
 }
 
-cinnamonCanvas.addEventListener("pointerdown", updateCinnamonPointerTarget);
-cinnamonCanvas.addEventListener("pointermove", updateCinnamonPointerTarget);
+cinnamonCanvas.addEventListener("pointerdown", (event) => {
+  if (activeFinalGame !== "cinnamon") return;
+
+  cinnamonCanvas.setPointerCapture(event.pointerId);
+  updateCinnamonPointerTarget(event);
+});
+
+cinnamonCanvas.addEventListener("pointermove", (event) => {
+  if (activeFinalGame !== "cinnamon") return;
+
+  const isTouch = event.pointerType === "touch";
+  const isMouseDragging = event.buttons === 1;
+
+  if (isTouch || isMouseDragging) {
+    updateCinnamonPointerTarget(event);
+  }
+});
+
+cinnamonCanvas.addEventListener("pointerup", (event) => {
+  if (cinnamonCanvas.hasPointerCapture(event.pointerId)) {
+    cinnamonCanvas.releasePointerCapture(event.pointerId);
+  }
+});
+
+cinnamonCanvas.addEventListener("pointercancel", (event) => {
+  if (cinnamonCanvas.hasPointerCapture(event.pointerId)) {
+    cinnamonCanvas.releasePointerCapture(event.pointerId);
+  }
+});
 
 ingredientButtons.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-ingredient]");
